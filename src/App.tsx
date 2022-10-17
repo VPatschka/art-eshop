@@ -1,25 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import { CategoryFilter } from "./components/filters/CategoryFilter";
+import { createApolloClient } from "./ApolloClient";
+import { ApolloProvider } from "@apollo/client";
 
 function App() {
+  const [client] = useState(createApolloClient(process.env.REACT_APP_HASURO_ADMIN_TOKEN ?? ''));
+
   return (
+    <ApolloProvider client={client} >
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
     </div>
+    </ApolloProvider>
   );
 }
 

@@ -31,7 +31,7 @@ export const FeaturedProduct: FC<FeatureProductProps> = ({ product }) => {
             <div className="featured-product__info__details">
               <h2>Details</h2>
               {product.product_details.map((productDetail) => (
-                <div>
+                <div key={productDetail.name}>
                   {productDetail.name}: {productDetail.value}
                 </div>
               ))}

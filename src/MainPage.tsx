@@ -4,6 +4,7 @@ import { GET_PRODUCTS, GetProductsType } from "./queries/getProducts";
 import { Header } from "./components/header/Header";
 import { Product } from "./types/Product";
 import { FeaturedProduct } from "./components/FeaturedProduct";
+import { ProductBox } from "./components/product-box/ProductBox";
 
 export const MainPage: FC = () => {
   const { loading, error, data } = useQuery<GetProductsType>(GET_PRODUCTS);
@@ -21,7 +22,7 @@ export const MainPage: FC = () => {
 
   if (error) {
     console.log(error);
-    <div className="danger">Error occured while downloading data</div>;
+    return <div className="danger">Error occured while downloading data</div>;
   }
 
   if (loading) {
@@ -32,15 +33,7 @@ export const MainPage: FC = () => {
     <div>
       <Header productsInCart={productsInCart} onClear={clearProductsInCart} />
       {featuredProduct && <FeaturedProduct product={featuredProduct} />}
+      {data?.products && <ProductBox products={data.products} />}
     </div>
   );
-  <div>
-    {/*<Header />*/}
-    {/*<FeaturedProduct />*/}
-    {/*<ProductList>*/}
-    {/*  <Filter />*/}
-    {/*  <ProductCards />*/}
-    {/*  <Pagination />*/}
-    {/*</ProductList>*/}
-  </div>;
 };

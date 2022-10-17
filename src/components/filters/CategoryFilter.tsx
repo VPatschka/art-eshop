@@ -1,20 +1,55 @@
-import { FC } from "react";
+import { ChangeEvent, FC, useCallback } from "react";
 import { GET_CATEGORIES, GetCategoriesType } from "../../queries/getCategories";
 import { useQuery } from "@apollo/client";
 
-export const CategoryFilter: FC = () => {
+type CategoryFilterProps = {
+  selectedCategoryIds: number[];
+  onChange: (categoryIds: number[]) => void;
+};
+
+export const CategoryFilter: FC<CategoryFilterProps> = ({
+  selectedCategoryIds,
+  onChange,
+}) => {
   const { loading, error, data } = useQuery<GetCategoriesType>(GET_CATEGORIES);
 
-  console.log(error, data);
+  const handleOnChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      console.log("change");
+      const isChecked = event.target.checked;
+      const checkedId = parseInt(event.target.value);
+      if (isChecked) {
+        onChange([...selectedCategoryIds, checkedId]);
+      } else {
+        onChange(
+          selectedCategoryIds.filter((categoryId) => categoryId !== checkedId)
+        );
+      }
+    },
+    [selectedCategoryIds, onChange]
+  );
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :({error.name})</p>;
+  if (loading) {
+    return <span className="loading" />;
+  }
+
+  if (error) {
+    console.log(error);
+    return <div className="danger">Error occured while downloading data</div>;
+  }
 
   return (
     <div className="filter__categories">
       {data?.categories.map(({ id, name }) => (
         <div key={id}>
-          <h3>{name}</h3>
+          <input
+            onChange={handleOnChange}
+            type="checkbox"
+            name={name}
+            value={id}
+            checked={selectedCategoryIds.includes(id)}
+          />
+          <label>{name}</label>
         </div>
       ))}
     </div>

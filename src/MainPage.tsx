@@ -1,13 +1,12 @@
 import { FC, useCallback, useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_PRODUCTS, GetProductsType } from "./queries/getProducts";
-import { Header } from "./components/Header";
+import { Header } from "./components/header/Header";
 import { Product } from "./types/Product";
 
 export const MainPage: FC = () => {
   const { loading, error, data } = useQuery<GetProductsType>(GET_PRODUCTS);
 
-  console.log(data);
   const [productsInCart, setProductsInCart] = useState<Product[]>([]);
   const clearProductsInCart = useCallback(() => {
     setProductsInCart([]);

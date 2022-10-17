@@ -1,0 +1,27 @@
+@import '../../variables';
+
+.cart-product {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: left;
+  margin: 40px;
+
+  &__name {
+    display: block;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 22px;
+  }
+
+  &__price {
+    font-size: 29px;
+    color: $price-color;
+    line-height: 32px;
+    margin-top: 9px;
+  }
+
+  img {
+    max-height: 80px;
+  }
+}

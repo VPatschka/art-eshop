@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { Product } from "../types/Product";
+import { Product } from "../../types/Product";
 import { Cart } from "./Cart";
-import logo from "../assets/logo.svg";
+import logo from "../../assets/logo.svg";
 import "./Header.scss";
 
 type HeaderProps = {

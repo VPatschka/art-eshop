@@ -1,7 +1,9 @@
 import { FC, useCallback, useState } from "react";
-import { Product } from "../types/Product";
-import cart from "../assets/cart.svg";
-import close from "../assets/close.svg";
+import { Product } from "../../types/Product";
+import { CartProduct } from "./CartProduct";
+import cart from "../../assets/cart.svg";
+import close from "../../assets/close.svg";
+import "./Cart.scss";
 
 type CartProps = {
   productsInCart: Product[];
@@ -29,16 +31,7 @@ export const Cart: FC<CartProps> = ({ productsInCart, onClear }) => {
           </div>
           <div className="cart-box__products">
             {productsInCart.map((product) => (
-              <div key={product.id} className="cart-product">
-                <div>
-                  <span className="cart-product__name">{product.name}</span>
-                  <span className="cart-product__price">${product.price}</span>
-                </div>
-                <img
-                  src={product.product_images[0].source}
-                  alt={product.product_images[0].alt}
-                />
-              </div>
+              <CartProduct key={product.id} product={product} />
             ))}
           </div>
           <hr />

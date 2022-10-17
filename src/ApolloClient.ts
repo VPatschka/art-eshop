@@ -1,12 +1,12 @@
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 
 export const createApolloClient = (authToken: string) => {
   return new ApolloClient({
     link: new HttpLink({
-      uri: 'https://champion-vervet-56.hasura.app/v1/graphql',
+      uri: "https://champion-vervet-56.hasura.app/v1/graphql",
       headers: {
-        'x-hasura-admin-secret': authToken
-      }
+        "x-hasura-admin-secret": authToken,
+      },
     }),
     cache: new InMemoryCache(),
   });

@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
-import './App.css';
-import { CategoryFilter } from "./components/filters/CategoryFilter";
+import React, { useState } from "react";
 import { createApolloClient } from "./ApolloClient";
 import { ApolloProvider } from "@apollo/client";
+import { MainPage } from "./MainPage";
+import "./App.scss";
 
 function App() {
-  const [client] = useState(createApolloClient(process.env.REACT_APP_HASURO_ADMIN_TOKEN ?? ''));
+  const [client] = useState(
+    createApolloClient(process.env.REACT_APP_HASURO_ADMIN_TOKEN ?? "")
+  );
 
   return (
-    <ApolloProvider client={client} >
-    <div className="App">
-    </div>
+    <ApolloProvider client={client}>
+      <div className="App">
+        <MainPage />
+      </div>
     </ApolloProvider>
   );
 }

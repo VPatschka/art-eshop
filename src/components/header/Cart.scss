@@ -10,14 +10,16 @@
 
   &__badge {
     position: absolute;
-    background: red;
-    height: 20px;
-    width: 20px;
-    border-radius: 12px;
+    background: black;
+    height: 21px;
+    width: 21px;
     display: block;
-    top: -8px;
-    right: -8px;
+    bottom: -10px;
+    right: -15px;
     color: white;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 22px;
   }
 }
 

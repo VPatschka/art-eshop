@@ -9,7 +9,7 @@ export type Product = {
   bestseller: boolean;
   featured: boolean;
   product_images: ProductImage[];
-  product_details: ProductDetails;
+  product_details: ProductDetail[];
 };
 
 export type ProductImage = {
@@ -18,6 +18,7 @@ export type ProductImage = {
   alt: string;
 };
 
-export type ProductDetails = {
-  [key: string]: string;
+export type ProductDetail = {
+  name: string;
+  value: string;
 };

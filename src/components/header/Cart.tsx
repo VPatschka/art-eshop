@@ -23,7 +23,7 @@ export const Cart: FC<CartProps> = ({ productsInCart, onClear }) => {
     setShowCart(false);
     setLastProductCount(0);
     onClear();
-  }, []);
+  }, [onClear]);
 
   useEffect(() => {
     if (productCount !== lastProductCount && productCount !== 0) {

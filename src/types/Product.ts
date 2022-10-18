@@ -10,6 +10,9 @@ export type Product = {
   featured: boolean;
   product_images: ProductImage[];
   product_details: ProductDetail[];
+  related_products: {
+    product: Product;
+  }[];
 };
 
 export type ProductImage = {

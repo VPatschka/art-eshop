@@ -26,6 +26,16 @@ export const GET_PRODUCTS = gql`
         source
         alt
       }
+      related_products {
+        product {
+          id
+          name
+          product_images {
+            source
+            alt
+          }
+        }
+      }
     }
   }
 `;

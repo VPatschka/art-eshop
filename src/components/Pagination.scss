@@ -1,0 +1,36 @@
+@import '../variables';
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 105px;
+
+  span {
+    font-size: 29px;
+    line-height: 32px;
+    color: #B4B4B4;
+    margin: 0 15px;
+    cursor: pointer;
+
+    &.active {
+      color: black;
+      cursor: auto;
+    }
+  }
+
+  &__arrow {
+    cursor: pointer;
+    path {
+      stroke: black;
+    }
+
+    &.disabled {
+      cursor: auto;
+      path {
+        stroke: #B4B4B4;
+      }
+    }
+  }
+}

@@ -20,7 +20,9 @@ export const MainPage: FC = () => {
 
   const addToCart = useCallback(
     (product: Product) => {
-      setProductsInCart([...productsInCart, product]);
+      if (!productsInCart.includes(product)) {
+        setProductsInCart([...productsInCart, product]);
+      }
     },
     [productsInCart]
   );

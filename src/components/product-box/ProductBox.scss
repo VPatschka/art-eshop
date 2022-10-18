@@ -1,0 +1,39 @@
+@import '../../variables';
+
+.product-box {
+  padding-top: 68px;
+
+  &__menu-sort {
+    display: flex;
+    justify-content: space-between;
+
+    &__menu {
+      font-size: 30px;
+      line-height: 32px;
+
+      span {
+        margin-left: 37px;
+        color: $secondary-color;
+
+        &:first-child {
+          position: relative;
+          font-weight: 700;
+          margin: 0;
+          color: black;
+
+          &:after {
+            content: '/';
+            position: absolute;
+            right: -22px;
+            top: 0;
+          }
+        }
+      }
+    }
+  }
+
+  &__filter-list {
+    display: flex;
+    justify-content: space-between;
+  }
+}

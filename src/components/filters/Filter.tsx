@@ -4,6 +4,7 @@ import { PriceFilter } from "./PriceFilter";
 import { Filters, PriceRange } from "../../types/Filters";
 import { Product } from "../../types/Product";
 import { createPriceRangesFromProducts } from "./createPriceRangesFromProducts";
+import "./Filter.scss";
 
 type FilterProps = {
   filters: Filters;

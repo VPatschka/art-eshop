@@ -5,6 +5,7 @@ import { ProductList } from "./ProductList";
 import { SortBy } from "../../types/SortBy";
 import { Sorting } from "./Sorting";
 import { Filters } from "../../types/Filters";
+import "./ProductBox.scss";
 
 type ProductBoxProps = {
   products: Product[];

@@ -39,17 +39,19 @@ export const CategoryFilter: FC<CategoryFilterProps> = ({
   }
 
   return (
-    <div className="filter__categories">
+    <div className="filter__block">
+      <label>Category</label>
       {data?.categories.map(({ id, name }) => (
         <div key={id}>
           <input
+            id={name}
             onChange={handleOnChange}
             type="checkbox"
             name={name}
             value={id}
             checked={selectedCategoryIds.includes(id)}
           />
-          <label>{name}</label>
+          <label htmlFor={name}>{name}</label>
         </div>
       ))}
     </div>

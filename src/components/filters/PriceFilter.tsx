@@ -39,10 +39,12 @@ export const PriceFilter: FC<PriceFilterProps> = (props) => {
   );
 
   return (
-    <div className="filter__prices">
+    <div className="filter__block">
+      <label>Price range</label>
       {priceRanges.map((priceRange) => (
         <div key={priceRange.id}>
           <input
+            id={priceRange.id.toString()}
             onChange={handleOnChange}
             type="checkbox"
             value={priceRange.id}
@@ -50,7 +52,9 @@ export const PriceFilter: FC<PriceFilterProps> = (props) => {
               selectedPriceRange && priceRange.id === selectedPriceRange.id
             }
           />
-          <label>{getLabel(priceRange)}</label>
+          <label htmlFor={priceRange.id.toString()}>
+            {getLabel(priceRange)}
+          </label>
         </div>
       ))}
     </div>

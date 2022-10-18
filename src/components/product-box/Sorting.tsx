@@ -1,5 +1,6 @@
 import { SortBy, SortByType } from "../../types/SortBy";
 import { ChangeEvent, FC, useCallback } from "react";
+import "./Sorting.scss";
 
 type SortingProps = {
   sortBy: SortBy;
@@ -19,7 +20,7 @@ export const Sorting: FC<SortingProps> = ({ sortBy, onChange }) => {
   );
 
   return (
-    <div className="product-box__menu-sort__sort">
+    <div className="sorting">
       <div onClick={toggleAscendingSort}>
         <svg
           width="15"

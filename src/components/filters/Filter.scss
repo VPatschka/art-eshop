@@ -1,0 +1,52 @@
+.filter {
+  width: 268px;
+  text-align: left;
+  margin-top: 34px;
+
+  &__block {
+    border-bottom: 1px solid #C2C2C2;
+    padding-bottom: 40px;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    > label {
+      display: block;
+      font-size: 22px;
+      line-height: 24px;
+      font-weight: 700;
+
+      margin-top: 37px;
+      margin-bottom: 43px;
+    }
+
+    div {
+      margin: 20px 0;
+      padding-left: 4px;
+
+      input[type=checkbox] {
+        display: none;
+      }
+
+      label {
+        padding-left: 46px;
+        text-transform: capitalize;
+        position: relative;
+        cursor: pointer;
+
+        &:before {
+          content: url("../../assets/checkbox-empty.svg");
+          position: absolute;
+          left: 0;
+          top: -4px;
+        }
+      }
+
+      input[type=checkbox]:checked ~ label:before {
+        content: url("../../assets/checkbox-filled.svg");
+      }
+    }
+  }
+
+}

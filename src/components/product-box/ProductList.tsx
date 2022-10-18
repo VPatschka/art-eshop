@@ -12,5 +12,5 @@ type ProductListProps = {
 export const ProductList: FC<ProductListProps> = (props) => {
   console.log(props);
 
-  return <></>;
+  return <div className="product-list"></div>;
 };

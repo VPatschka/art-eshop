@@ -1,0 +1,41 @@
+@import '../../variables';
+
+.sorting {
+
+  display: flex;
+  align-items: center;
+
+  div {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  label {
+    font-size: 22px;
+    line-height: 24px;
+    color: $secondary-color;
+    margin-left: 7px;
+    margin-right: 15px;
+  }
+
+  select {
+    font-family: 'Archivo', sans-serif;
+    font-size: 22px;
+    line-height: 24px;
+    border: none;
+    padding-right: 33px;
+    text-align: right;
+    cursor: pointer;
+
+    /* Remove arrow */
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+    
+    background-image: url("data:image/svg+xml;utf8,<svg width='20' height='13' viewBox='0 0 20 13' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M2 2L10 10L18 2' stroke='black' stroke-width='3'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 6px;
+  }
+}

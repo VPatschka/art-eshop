@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { Product } from "../../types/Product";
 import { CartProduct } from "./CartProduct";
 import cart from "../../assets/cart.svg";
@@ -13,10 +13,24 @@ type CartProps = {
 export const Cart: FC<CartProps> = ({ productsInCart, onClear }) => {
   const productCount = productsInCart.length;
   const [showCart, setShowCart] = useState(productCount > 0);
+  const [lastProductCount, setLastProductCount] = useState(0);
 
   const toggleCart = useCallback(() => {
     setShowCart(!showCart);
   }, [showCart]);
+
+  const handleClear = useCallback(() => {
+    setShowCart(false);
+    setLastProductCount(0);
+    onClear();
+  }, []);
+
+  useEffect(() => {
+    if (productCount !== lastProductCount && productCount !== 0) {
+      setShowCart(true);
+      setLastProductCount(productCount);
+    }
+  }, [productCount, lastProductCount]);
 
   return (
     <div>
@@ -35,7 +49,7 @@ export const Cart: FC<CartProps> = ({ productsInCart, onClear }) => {
             ))}
           </div>
           <hr />
-          <button className="btn-secondary" onClick={onClear}>
+          <button className="btn-secondary" onClick={handleClear}>
             Clear
           </button>
         </div>

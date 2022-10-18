@@ -27,10 +27,7 @@
     }
 
     &.disabled {
-      cursor: auto;
-      path {
-        stroke: #B4B4B4;
-      }
+      display: none;
     }
   }
 }

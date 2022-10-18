@@ -39,7 +39,7 @@ export const FeaturedProduct: FC<FeatureProductProps> = ({
               {product.related_products.map(
                 ({ product }) =>
                   product.product_images.length > 0 && (
-                    <div className="related-product">
+                    <div key={product.id} className="related-product">
                       <img
                         src={product.product_images[0].source}
                         alt={product.product_images[0].alt}

@@ -33,6 +33,7 @@ export const Pagination: FC<PaginationProps> = ({
         .fill(undefined)
         .map((_, index) => (
           <span
+            key={index}
             onClick={() => onPageChange(index)}
             className={currentPage === index ? "active" : ""}
           >

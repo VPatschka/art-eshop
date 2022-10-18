@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createApolloClient } from "./ApolloClient";
 import { ApolloProvider } from "@apollo/client";
-import { MainPage } from "./MainPage";
+import { MainPage } from "./pages/MainPage";
 import "./App.scss";
 
 function App() {

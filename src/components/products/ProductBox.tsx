@@ -9,9 +9,10 @@ import "./ProductBox.scss";
 
 type ProductBoxProps = {
   products: Product[];
+  onAddToCart: (product: Product) => void;
 };
 
-export const ProductBox: FC<ProductBoxProps> = ({ products }) => {
+export const ProductBox: FC<ProductBoxProps> = ({ products, onAddToCart }) => {
   const [sortBy, setSortBy] = useState<SortBy>({
     type: "alphabetical",
     ascending: true,
@@ -42,7 +43,12 @@ export const ProductBox: FC<ProductBoxProps> = ({ products }) => {
           onChange={handleFiltersChange}
           products={products}
         />
-        <ProductList products={products} filters={filters} sortBy={sortBy} />
+        <ProductList
+          products={products}
+          filters={filters}
+          sortBy={sortBy}
+          onAddToCart={onAddToCart}
+        />
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ export const CartProduct: FC<CartProductProps> = ({ product }) => {
     <div key={product.id} className="cart-product">
       <div>
         <span className="cart-product__name">{product.name}</span>
-        <span className="cart-product__price">${product.price}</span>
+        <span className="cart-product__price">${product.price.toFixed(2)}</span>
       </div>
       {product.product_images && (
         <img

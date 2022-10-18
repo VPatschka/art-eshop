@@ -4,6 +4,7 @@ import "./FeaturedProduct.scss";
 
 type FeatureProductProps = {
   product: Product;
+  onAddToCart: (product: Product) => void;
 };
 
 export const FeaturedProduct: FC<FeatureProductProps> = ({ product }) => {
@@ -15,7 +16,7 @@ export const FeaturedProduct: FC<FeatureProductProps> = ({ product }) => {
           src={product.product_images[0].source}
           alt={product.product_images[0].alt}
         />
-        <span>Photo of the day</span>
+        <span className="flag flag--featured">Photo of the day</span>
       </div>
       <div className="featured-product__info">
         <div className="featured-product__info__description">

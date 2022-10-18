@@ -1,0 +1,42 @@
+@import '../../variables';
+
+.product {
+  text-align: left;
+
+  &__image {
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+
+    span.flag--add-to-cart {
+      display: none;
+    }
+
+    &:hover span.flag--add-to-cart {
+      display: block;
+    }
+  }
+
+  &__category {
+    display: block;
+    color: $secondary-color;
+    text-transform: capitalize;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 24px;
+    margin: 8px 0;
+  }
+
+  h3 {
+    font-size: 34px;
+    line-height: 37px;
+    font-weight: 700;
+    margin: 9px 0;
+  }
+
+  &__price {
+    color: $secondary-color;
+    font-size: 29px;
+    line-height: 32px;
+  }
+}

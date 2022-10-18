@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap');
+@import 'variables.scss';
 
 body {
   margin: 0;
@@ -24,6 +25,50 @@ code {
   line-height: 25px;
   padding: 15px 40px 16px;
   cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+}
+
+.danger {
+  color: red;
+}
+
+.flag {
+  position: absolute;
+  padding: 6px 8px 6px 20px;
+  background: white;
+  bottom: 0;
+  left: 0;
+  font-size: 20px;
+  line-height: 22px;
+
+  &--top {
+    top: 0;
+    bottom: auto;
+  }
+
+  &--featured {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 270px;
+    height: 67px;
+    font-weight: 700;
+  }
+
+  &--add-to-cart {
+    background: black;
+    color: white;
+    width: 100%;
+    padding: 10px 0;
+    text-transform: uppercase;
+    font-size: 23px;
+    font-weight: 500;
+    line-height: 25px;
+  }
 }
 
 .loading {

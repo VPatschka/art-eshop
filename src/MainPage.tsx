@@ -1,10 +1,10 @@
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_PRODUCTS, GetProductsType } from "./queries/getProducts";
 import { Header } from "./components/header/Header";
 import { Product } from "./types/Product";
 import { FeaturedProduct } from "./components/FeaturedProduct";
-import { ProductBox } from "./components/product-box/ProductBox";
+import { ProductBox } from "./components/products/ProductBox";
 
 export const MainPage: FC = () => {
   const { loading, error, data } = useQuery<GetProductsType>(GET_PRODUCTS);
@@ -14,11 +14,16 @@ export const MainPage: FC = () => {
     setProductsInCart([]);
   }, []);
   const featuredProduct = data?.products.find((product) => product.featured);
+  const otherProducts = data?.products.filter(
+    (product) => !featuredProduct || product.id !== featuredProduct.id
+  );
 
-  // todo: effect for testing only
-  useEffect(() => {
-    setProductsInCart(data?.products.slice(0, 3) ?? []);
-  }, [data]);
+  const addToCart = useCallback(
+    (product: Product) => {
+      setProductsInCart([...productsInCart, product]);
+    },
+    [productsInCart]
+  );
 
   if (error) {
     console.log(error);
@@ -26,14 +31,18 @@ export const MainPage: FC = () => {
   }
 
   if (loading) {
-    return <div className="loading"></div>;
+    return <div className="loading" />;
   }
 
   return (
     <div>
       <Header productsInCart={productsInCart} onClear={clearProductsInCart} />
-      {featuredProduct && <FeaturedProduct product={featuredProduct} />}
-      {data?.products && <ProductBox products={data.products} />}
+      {featuredProduct && (
+        <FeaturedProduct product={featuredProduct} onAddToCart={addToCart} />
+      )}
+      {otherProducts && (
+        <ProductBox products={otherProducts} onAddToCart={addToCart} />
+      )}
     </div>
   );
 };

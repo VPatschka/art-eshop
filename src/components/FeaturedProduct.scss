@@ -16,21 +16,6 @@
     img {
       width: 100%;
     }
-
-    span {
-      display: flex;
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      background: white;
-      width: 270px;
-      height: 67px;
-      justify-content: center;
-      align-items: center;
-      font-size: 20px;
-      line-height: 22px;
-      font-weight: 700;
-    }
   }
 
   &__info {

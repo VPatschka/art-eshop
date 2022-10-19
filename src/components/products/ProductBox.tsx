@@ -11,10 +11,9 @@ import { FilterModal } from "../FilterModal";
 
 type ProductBoxProps = {
   products: Product[];
-  onAddToCart: (product: Product) => void;
 };
 
-export const ProductBox: FC<ProductBoxProps> = ({ products, onAddToCart }) => {
+export const ProductBox: FC<ProductBoxProps> = ({ products }) => {
   const [sortBy, setSortBy] = useState<SortBy>({
     type: "alphabetical",
     ascending: true,
@@ -58,24 +57,20 @@ export const ProductBox: FC<ProductBoxProps> = ({ products, onAddToCart }) => {
           onChange={handleFiltersChange}
           products={products}
         />
-        <ProductList
-          products={products}
+        <ProductList products={products} filters={filters} sortBy={sortBy} />
+      </div>
+      {showFilterModal && (
+        <FilterModal
           filters={filters}
           sortBy={sortBy}
-          onAddToCart={onAddToCart}
+          products={products}
+          onClose={() => setShowFilterModal(false)}
+          onSave={(newFilters, newSortBy) => {
+            setFilters(newFilters);
+            setSortBy(newSortBy);
+          }}
         />
-      </div>
-      <FilterModal
-        show={showFilterModal}
-        filters={filters}
-        sortBy={sortBy}
-        products={products}
-        onClose={() => setShowFilterModal(false)}
-        onSave={(newFilters, newSortBy) => {
-          setFilters(newFilters);
-          setSortBy(newSortBy);
-        }}
-      />
+      )}
     </div>
   );
 };

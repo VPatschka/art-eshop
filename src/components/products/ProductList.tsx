@@ -13,11 +13,13 @@ type ProductListProps = {
   products: Product[];
   filters: Filters;
   sortBy: SortBy;
-  onAddToCart: (product: Product) => void;
 };
 
-export const ProductList: FC<ProductListProps> = (props) => {
-  const { products, filters, sortBy, onAddToCart } = props;
+export const ProductList: FC<ProductListProps> = ({
+  products,
+  filters,
+  sortBy,
+}) => {
   const [page, setPage] = useState(0);
 
   const filteredProducts = filterProducts(products, filters);
@@ -38,11 +40,7 @@ export const ProductList: FC<ProductListProps> = (props) => {
     <div className="product-list">
       <div className="product-list__products">
         {productToShow.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            onAddToCart={() => onAddToCart(product)}
-          />
+          <ProductCard key={product.id} product={product} />
         ))}
         {productToShow.length === 0 && (
           <span className="danger">No products to show</span>

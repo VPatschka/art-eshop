@@ -1,16 +1,18 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import { Product } from "../../types/Product";
+import { CartContext } from "../../providers/CartProvider";
 import "./ProductCard.scss";
 
 type ProductCardProps = {
   product: Product;
-  onAddToCart: () => void;
 };
 
-export const ProductCard: FC<ProductCardProps> = ({ product, onAddToCart }) => {
+export const ProductCard: FC<ProductCardProps> = ({ product }) => {
+  const { addProduct: addProductToCart } = useContext(CartContext);
+
   return (
     <div className="product">
-      <div className="product__image" onClick={onAddToCart}>
+      <div className="product__image" onClick={() => addProductToCart(product)}>
         {product.bestseller && (
           <span className="flag flag--top">Best Seller</span>
         )}

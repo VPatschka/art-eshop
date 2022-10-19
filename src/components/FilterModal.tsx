@@ -2,14 +2,13 @@ import Modal from "react-modal";
 import close from "../assets/close.svg";
 import { Filter } from "./filters/Filter";
 import { Sorting } from "./products/Sorting";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { Filters } from "../types/Filters";
 import { SortBy } from "../types/SortBy";
 import { Product } from "../types/Product";
 import "./FilterModal.scss";
 
 type FilterModalProps = {
-  show: boolean;
   products: Product[];
   filters: Filters;
   sortBy: SortBy;
@@ -18,17 +17,9 @@ type FilterModalProps = {
 };
 
 export const FilterModal: FC<FilterModalProps> = (props) => {
-  const { show, products, filters, sortBy, onClose, onSave } = props;
-  const [currentFilter, setCurrentFilter] = useState<Filters>({});
-  const [currentSortBy, setCurrentSortBy] = useState<SortBy>({
-    type: "alphabetical",
-    ascending: true,
-  });
-
-  useEffect(() => {
-    setCurrentFilter(filters);
-    setCurrentSortBy(sortBy);
-  }, [filters, sortBy]);
+  const { products, filters, sortBy, onClose, onSave } = props;
+  const [currentFilter, setCurrentFilter] = useState<Filters>(props.filters);
+  const [currentSortBy, setCurrentSortBy] = useState<SortBy>(props.sortBy);
 
   const handleFiltersChange = (newFilter: Filters) => {
     setCurrentFilter(newFilter);
@@ -57,7 +48,7 @@ export const FilterModal: FC<FilterModalProps> = (props) => {
   };
 
   return (
-    <Modal isOpen={show} onRequestClose={handleClose} className="filter-modal">
+    <Modal isOpen onRequestClose={handleClose} className="filter-modal">
       <div className="filter-modal__header">
         <h3>Filter</h3>
         <div className="close" onClick={handleClose}>

@@ -1,55 +1,34 @@
-import { FC, useCallback, useEffect, useState } from "react";
-import { Product } from "../../types/Product";
+import { FC, useContext } from "react";
+import { CartContext } from "../../providers/CartProvider";
 import { CartProduct } from "./CartProduct";
 import cart from "../../assets/cart.svg";
 import close from "../../assets/close.svg";
 import "./Cart.scss";
 
-type CartProps = {
-  productsInCart: Product[];
-  onClear: () => void;
-};
+export const Cart: FC = () => {
+  const cartContext = useContext(CartContext);
+  const { show, setShow, products, clearProducts } = cartContext;
 
-export const Cart: FC<CartProps> = ({ productsInCart, onClear }) => {
-  const productCount = productsInCart.length;
-  const [showCart, setShowCart] = useState(productCount > 0);
-  const [lastProductCount, setLastProductCount] = useState(0);
-
-  const toggleCart = useCallback(() => {
-    setShowCart(!showCart);
-  }, [showCart]);
-
-  const handleClear = useCallback(() => {
-    setShowCart(false);
-    setLastProductCount(0);
-    onClear();
-  }, [onClear]);
-
-  useEffect(() => {
-    if (productCount !== lastProductCount && productCount !== 0) {
-      setShowCart(true);
-      setLastProductCount(productCount);
-    }
-  }, [productCount, lastProductCount]);
+  const productCount = products.length;
 
   return (
     <div>
-      <div className="cart" onClick={toggleCart}>
+      <div className="cart" onClick={() => setShow(!show)}>
         <img src={cart} alt="cart" className="cart__image" />
         <span className="cart__badge">{productCount}</span>
       </div>
-      {showCart && (
+      {show && (
         <div className="cart-box">
-          <div className="close" onClick={toggleCart}>
+          <div className="close" onClick={() => setShow(!show)}>
             <img src={close} alt="Close cart" />
           </div>
           <div className="cart-box__products">
-            {productsInCart.map((product) => (
+            {products.map((product) => (
               <CartProduct key={product.id} product={product} />
             ))}
           </div>
           <hr />
-          <button className="btn-secondary" onClick={handleClear}>
+          <button className="btn-secondary" onClick={clearProducts}>
             Clear
           </button>
         </div>

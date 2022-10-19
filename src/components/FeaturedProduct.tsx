@@ -1,22 +1,21 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
+import { CartContext } from "../providers/CartProvider";
 import { Product } from "../types/Product";
 import "./FeaturedProduct.scss";
 
 type FeatureProductProps = {
   product: Product;
-  onAddToCart: (product: Product) => void;
 };
 
-export const FeaturedProduct: FC<FeatureProductProps> = ({
-  product,
-  onAddToCart,
-}) => {
+export const FeaturedProduct: FC<FeatureProductProps> = ({ product }) => {
+  const { addProduct: addProductToCart } = useContext(CartContext);
+
   return (
     <div className="featured-product">
       <div className="featured-product__header">
         <h1>{product.name}</h1>
         <button
-          onClick={() => onAddToCart(product)}
+          onClick={() => addProductToCart(product)}
           className="btn-primary desktop"
         >
           Add to cart
@@ -30,7 +29,7 @@ export const FeaturedProduct: FC<FeatureProductProps> = ({
         <span className="flag flag--featured">Photo of the day</span>
       </div>
       <button
-        onClick={() => onAddToCart(product)}
+        onClick={() => addProductToCart(product)}
         className="btn-primary mobile"
       >
         Add to cart

@@ -10,6 +10,9 @@ type FeatureProductProps = {
 export const FeaturedProduct: FC<FeatureProductProps> = ({ product }) => {
   const { addProduct: addProductToCart } = useContext(CartContext);
 
+  const imageSrc = product.product_images[0].source;
+  const imageSrcForMobile = imageSrc.replace(/w=\d+&h=\d+/g, "w=480&h=320");
+
   return (
     <div className="featured-product">
       <div className="featured-product__header">
@@ -23,8 +26,10 @@ export const FeaturedProduct: FC<FeatureProductProps> = ({ product }) => {
       </div>
       <div className="featured-product__image">
         <img
-          src={product.product_images[0].source}
+          srcSet={`${imageSrc} 1280w, ${imageSrcForMobile} 340w`}
+          src={imageSrc}
           alt={product.product_images[0].alt}
+          sizes="50vw"
         />
         <span className="flag flag--featured">Photo of the day</span>
       </div>

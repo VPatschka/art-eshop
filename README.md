@@ -8,6 +8,10 @@ PoC of the e-commerce solution to sell images and artworks.
 
 ---
 
-You can run the project locally, using:
+You can run the project locally, by installing libraries:
+
+### `yarn install`
+
+and starting local server:
 
 ### `yarn start`

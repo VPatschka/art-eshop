@@ -40,7 +40,7 @@ export const Cart: FC<CartProps> = ({ productsInCart, onClear }) => {
       </div>
       {showCart && (
         <div className="cart-box">
-          <div className="cart-box__close" onClick={toggleCart}>
+          <div className="close" onClick={toggleCart}>
             <img src={close} alt="Close cart" />
           </div>
           <div className="cart-box__products">

@@ -5,17 +5,18 @@ import { useQuery } from "@apollo/client";
 type CategoryFilterProps = {
   selectedCategoryIds: number[];
   onChange: (categoryIds: number[]) => void;
+  formPrefix: string;
 };
 
 export const CategoryFilter: FC<CategoryFilterProps> = ({
   selectedCategoryIds,
   onChange,
+  formPrefix,
 }) => {
   const { loading, error, data } = useQuery<GetCategoriesType>(GET_CATEGORIES);
 
   const handleOnChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      console.log("change");
       const isChecked = event.target.checked;
       const checkedId = parseInt(event.target.value);
       if (isChecked) {
@@ -44,14 +45,14 @@ export const CategoryFilter: FC<CategoryFilterProps> = ({
       {data?.categories.map(({ id, name }) => (
         <div key={id}>
           <input
-            id={name}
+            id={`${formPrefix}_${name}`}
             onChange={handleOnChange}
             type="checkbox"
-            name={name}
+            name={`${formPrefix}_${name}`}
             value={id}
             checked={selectedCategoryIds.includes(id)}
           />
-          <label htmlFor={name}>{name}</label>
+          <label htmlFor={`${formPrefix}_${name}`}>{name}</label>
         </div>
       ))}
     </div>

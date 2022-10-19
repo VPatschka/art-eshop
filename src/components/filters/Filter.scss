@@ -34,6 +34,7 @@
       }
 
       label {
+        display: block;
         padding-left: 46px;
         text-transform: capitalize;
         position: relative;
@@ -53,4 +54,25 @@
     }
   }
 
+  @media screen and (max-width: 860px) and (min-width: 680px) {
+    width: fit-content;
+    &__block  {
+      > label {
+        font-size: 2.5vw;
+      }
+
+      label {
+        font-size: 2vw;
+      }
+    }
+  }
+
+  @media screen and (max-width: 680px) {
+    width: fit-content;
+    &__block  {
+      &:first-child > label {
+        margin-top: 37px;
+      }
+    }
+  }
 }

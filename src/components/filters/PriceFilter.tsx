@@ -5,6 +5,7 @@ type PriceFilterProps = {
   selectedPriceRange?: PriceRange;
   priceRanges: PriceRange[];
   onChange: (priceRange?: PriceRange) => void;
+  formPrefix: string;
 };
 
 const getLabel = (priceRange: PriceRange) => {
@@ -21,7 +22,8 @@ const getLabel = (priceRange: PriceRange) => {
 };
 
 export const PriceFilter: FC<PriceFilterProps> = (props) => {
-  const { selectedPriceRange, priceRanges, onChange } = props;
+  const { selectedPriceRange, priceRanges, onChange, formPrefix } = props;
+  const currentPriceRange = selectedPriceRange || { id: -1, from: 0 }; // default price range
 
   const handleOnChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -41,22 +43,23 @@ export const PriceFilter: FC<PriceFilterProps> = (props) => {
   return (
     <div className="filter__block">
       <label>Price range</label>
-      {priceRanges.map((priceRange) => (
-        <div key={priceRange.id}>
-          <input
-            id={priceRange.id.toString()}
-            onChange={handleOnChange}
-            type="checkbox"
-            value={priceRange.id}
-            checked={
-              selectedPriceRange && priceRange.id === selectedPriceRange.id
-            }
-          />
-          <label htmlFor={priceRange.id.toString()}>
-            {getLabel(priceRange)}
-          </label>
-        </div>
-      ))}
+      {priceRanges.map((priceRange) => {
+        const inputId = `${formPrefix}_${priceRange.id.toString()}`;
+        return (
+          <div key={priceRange.id}>
+            <input
+              id={inputId}
+              onChange={handleOnChange}
+              type="checkbox"
+              value={priceRange.id}
+              checked={
+                currentPriceRange && priceRange.id === currentPriceRange.id
+              }
+            />
+            <label htmlFor={inputId}>{getLabel(priceRange)}</label>
+          </div>
+        );
+      })}
     </div>
   );
 };

@@ -5,9 +5,10 @@ import "./Sorting.scss";
 type SortingProps = {
   sortBy: SortBy;
   onChange: (sortBy: SortBy) => void;
+  className?: string;
 };
 
-export const Sorting: FC<SortingProps> = ({ sortBy, onChange }) => {
+export const Sorting: FC<SortingProps> = ({ sortBy, onChange, className }) => {
   const toggleAscendingSort = useCallback(() => {
     onChange({ ...sortBy, ascending: !sortBy.ascending });
   }, [onChange, sortBy]);
@@ -20,7 +21,7 @@ export const Sorting: FC<SortingProps> = ({ sortBy, onChange }) => {
   );
 
   return (
-    <div className="sorting">
+    <div className={"sorting " + (className || "")}>
       <div onClick={toggleAscendingSort}>
         <svg
           width="15"
@@ -40,8 +41,8 @@ export const Sorting: FC<SortingProps> = ({ sortBy, onChange }) => {
         </svg>
       </div>
       <label>Sort By</label>
-      <select onChange={changeSortByType}>
-        <option value="alphabetical">Alphabetically</option>
+      <select onChange={changeSortByType} value={sortBy.type}>
+        <option value="alphabetical">Alphabetical</option>
         <option value="price">Price</option>
       </select>
     </div>

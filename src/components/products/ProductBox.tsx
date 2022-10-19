@@ -5,7 +5,9 @@ import { ProductList } from "./ProductList";
 import { SortBy } from "../../types/SortBy";
 import { Sorting } from "./Sorting";
 import { Filters } from "../../types/Filters";
+import filter from "../../assets/filter.svg";
 import "./ProductBox.scss";
+import { FilterModal } from "../FilterModal";
 
 type ProductBoxProps = {
   products: Product[];
@@ -17,6 +19,7 @@ export const ProductBox: FC<ProductBoxProps> = ({ products, onAddToCart }) => {
     type: "alphabetical",
     ascending: true,
   });
+  const [showFilterModal, setShowFilterModal] = useState(false);
 
   const [filters, setFilters] = useState<Filters>({});
 
@@ -35,10 +38,22 @@ export const ProductBox: FC<ProductBoxProps> = ({ products, onAddToCart }) => {
           <span>Photography</span>
           <span>Premium Photos</span>
         </div>
-        <Sorting sortBy={sortBy} onChange={handleSortByChange} />
+        <Sorting
+          className="desktop--flex"
+          sortBy={sortBy}
+          onChange={handleSortByChange}
+        />
+        <img
+          className="mobile filter-icon"
+          src={filter}
+          alt="Filter"
+          onClick={() => setShowFilterModal(true)}
+        />
       </div>
       <div className="product-box__filter-list">
         <Filter
+          className="desktop"
+          formPrefix="desktop"
           filters={filters}
           onChange={handleFiltersChange}
           products={products}
@@ -50,6 +65,17 @@ export const ProductBox: FC<ProductBoxProps> = ({ products, onAddToCart }) => {
           onAddToCart={onAddToCart}
         />
       </div>
+      <FilterModal
+        show={showFilterModal}
+        filters={filters}
+        sortBy={sortBy}
+        products={products}
+        onClose={() => setShowFilterModal(false)}
+        onSave={(newFilters, newSortBy) => {
+          setFilters(newFilters);
+          setSortBy(newSortBy);
+        }}
+      />
     </div>
   );
 };

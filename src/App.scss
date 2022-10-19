@@ -3,5 +3,13 @@
 .App {
   text-align: center;
   padding: $app-padding-top $app-padding-right $app-padding-bottom $app-padding-left;
+
+  @media screen and (max-width: 860px) {
+    padding: $app-padding-top 40px $app-padding-bottom 40px;
+  }
+
+  @media screen and (max-width: 680px) {
+    padding: $app-padding-top 14px $app-padding-bottom 18px;
+  }
 }
 

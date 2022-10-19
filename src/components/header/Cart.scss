@@ -33,18 +33,6 @@
   background: white;
   top: 116px;
 
-  &__close {
-    position: absolute;
-    top: 22px;
-    right: 28px;
-    cursor: pointer;
-
-    img {
-      width: 18px;
-      height: 18px;
-    }
-  }
-
   hr {
     background: #C2C2C2;
     height: 1px;
@@ -54,5 +42,15 @@
   button {
     margin-top: 25px;
     width: 100%;
+  }
+
+  @media screen and (max-width: 860px) {
+    right: 40px;
+  }
+
+  @media screen and (max-width: 680px) {
+    width: calc(100% - 80px);
+    right: 0;
+    top: 76px;
   }
 }

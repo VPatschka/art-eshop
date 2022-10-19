@@ -11,4 +11,11 @@
     .logo {
         height: 21px;
     }
+
+    @media screen and (max-width: 680px) {
+        width: calc(100% - 32px);
+        left: -18px;
+        position: relative;
+        padding: 0 32px 36px;
+    }
 }

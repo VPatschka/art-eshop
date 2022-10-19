@@ -15,7 +15,10 @@ export const FeaturedProduct: FC<FeatureProductProps> = ({
     <div className="featured-product">
       <div className="featured-product__header">
         <h1>{product.name}</h1>
-        <button onClick={() => onAddToCart(product)} className="btn-primary">
+        <button
+          onClick={() => onAddToCart(product)}
+          className="btn-primary desktop"
+        >
           Add to cart
         </button>
       </div>
@@ -26,6 +29,12 @@ export const FeaturedProduct: FC<FeatureProductProps> = ({
         />
         <span className="flag flag--featured">Photo of the day</span>
       </div>
+      <button
+        onClick={() => onAddToCart(product)}
+        className="btn-primary mobile"
+      >
+        Add to cart
+      </button>
       <div className="featured-product__info">
         <div className="featured-product__info__description">
           <h2>About the {product.name}</h2>

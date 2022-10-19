@@ -10,9 +10,17 @@ type FilterProps = {
   filters: Filters;
   onChange: (filters: Filters) => void;
   products: Product[];
+  className?: string;
+  formPrefix: string;
 };
 
-export const Filter: FC<FilterProps> = ({ filters, onChange, products }) => {
+export const Filter: FC<FilterProps> = ({
+  filters,
+  onChange,
+  products,
+  className,
+  formPrefix,
+}) => {
   const handleCategoryOnChange = useCallback(
     (categoryIds: number[]) => {
       onChange({ ...filters, categoryIds });
@@ -28,15 +36,17 @@ export const Filter: FC<FilterProps> = ({ filters, onChange, products }) => {
   );
 
   return (
-    <div className="filter">
+    <div className={"filter " + (className || "")}>
       <CategoryFilter
         selectedCategoryIds={filters.categoryIds ?? []}
         onChange={handleCategoryOnChange}
+        formPrefix={formPrefix}
       />
       <PriceFilter
         selectedPriceRange={filters.prices}
         priceRanges={createPriceRangesFromProducts(products)}
         onChange={handlePriceFilterOnChange}
+        formPrefix={formPrefix}
       />
     </div>
   );

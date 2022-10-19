@@ -27,6 +27,7 @@
     padding-right: 33px;
     text-align: right;
     cursor: pointer;
+    background: white;
 
     /* Remove arrow */
     -moz-appearance:none; /* Firefox */
@@ -37,5 +38,27 @@
     background-repeat: no-repeat;
     background-position-x: 100%;
     background-position-y: 6px;
+  }
+
+  @media screen and (max-width: 860px) and (min-width: 680px) {
+    label {
+      margin-right: 4px;
+    }
+
+    label, select {
+      font-size: 2.5vw;
+    }
+  }
+
+  @media screen and (max-width: 680px) {
+    label {
+      margin-right: 4px;
+      white-space: nowrap;
+      font-size: 18px;
+    }
+    select {
+      font-size: 18px;
+      padding-right: 24px;
+    }
   }
 }

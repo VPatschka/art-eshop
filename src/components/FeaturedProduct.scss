@@ -82,4 +82,11 @@
       }
     }
   }
+
+  @media screen and (max-width: 860px) {
+    &__info {
+      flex-direction: column;
+      text-align: left;
+    }
+  }
 }

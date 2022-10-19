@@ -26,6 +26,8 @@ export const FeaturedProduct: FC<FeatureProductProps> = ({ product }) => {
       </div>
       <div className="featured-product__image">
         <img
+          // @ts-ignore
+          fetchpriority="high"
           srcSet={`${imageSrc} 1280w, ${imageSrcForMobile} 340w`}
           src={imageSrc}
           alt={product.product_images[0].alt}
